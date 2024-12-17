@@ -2,10 +2,12 @@ import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { useData } from '@/components/useData';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -17,6 +19,8 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const { scheduleDate, setScheduleDate } = useData();
+
 
   return (
     <Tabs
@@ -29,29 +33,50 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
+          headerTitle: scheduleDate.toDateString(),
+          tabBarLabel: "Today's Schedule",
+          tabBarIcon: ({ color }) => <TabBarIcon name="calendar-o" color={color} />,
+          tabBarLabelStyle: {
+            fontSize: wp('3.5%'),
+            paddingTop: wp('1.5%'),
+          },
+          headerLeft: () => (
             <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
                     name="info-circle"
-                    size={25}
+                    size={wp('6.5%')}
                     color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    style={{ marginLeft: wp('4%'), opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
               </Pressable>
             </Link>
+          ),
+          headerRight: () => (
+            <Pressable onPress={() => setScheduleDate(new Date())}>
+              {({ pressed }) => (
+                <FontAwesome
+                  name="undo"
+                  size={wp('5%')}
+                  color={Colors[colorScheme ?? 'light'].text}
+                  style={{ marginRight: wp('20%'), opacity: pressed ? 0.5 : 1 }}
+                />
+              )}
+            </Pressable>
           ),
         }}
       />
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'To Remember',
+          tabBarIcon: ({ color }) => <TabBarIcon name="bookmark" color={color} />,
+          tabBarLabelStyle: {
+            fontSize: wp('3.5%'),
+            paddingTop: wp('1.5%'),
+          },
         }}
       />
     </Tabs>
