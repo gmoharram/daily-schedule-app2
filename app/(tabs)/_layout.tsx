@@ -37,7 +37,7 @@ export default function TabLayout() {
           tabBarLabel: "Today's Schedule",
           tabBarIcon: ({ color }) => <TabBarIcon name="calendar-o" color={color} />,
           tabBarLabelStyle: {
-            fontSize: wp('3.5%'),
+            fontSize: wp('3%'),
             paddingTop: wp('1.5%'),
           },
           headerLeft: () => (
@@ -48,7 +48,7 @@ export default function TabLayout() {
                     name="info-circle"
                     size={wp('6.5%')}
                     color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginLeft: wp('4%'), opacity: pressed ? 0.5 : 1 }}
+                    style={{ marginLeft: wp('8%'), opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
               </Pressable>
@@ -60,8 +60,8 @@ export default function TabLayout() {
                 <FontAwesome
                   name="undo"
                   size={wp('5%')}
-                  color={Colors[colorScheme ?? 'light'].text}
-                  style={{ marginRight: wp('20%'), opacity: pressed ? 0.5 : 1 }}
+                  color={Colors[colorScheme ?? 'light'].tabIconSelected}
+                  style={{ marginRight: wp('21%'), opacity: pressed ? 0.5 : 1 }}
                 />
               )}
             </Pressable>
@@ -74,7 +74,7 @@ export default function TabLayout() {
           title: 'To Remember',
           tabBarIcon: ({ color }) => <TabBarIcon name="bookmark" color={color} />,
           tabBarLabelStyle: {
-            fontSize: wp('3.5%'),
+            fontSize: wp('3%'),
             paddingTop: wp('1.5%'),
           },
         }}

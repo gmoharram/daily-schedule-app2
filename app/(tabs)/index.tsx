@@ -1,17 +1,30 @@
-import { StyleSheet } from 'react-native';
+import React from 'react';
+import { ScrollView, StyleSheet, View, Pressable } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { FontAwesome } from '@expo/vector-icons';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { View } from '@/components/Themed';
+import { ScheduleItemCardSwipeable } from '@/components/ScheduleItemCardSwipeable';
 import { useData } from '@/components/useData';
-import { ScheduleItemCard } from '@/components/ScheduleItemCard';
 
 export default function TabOneScreen() {
-  const { scheduleItems, setScheduleItems } = useData();
+  const { scheduleItems, addScheduleItem } = useData();
 
   return (
-    <View style={styles.container}>
-      <ScheduleItemCard from="9:00" to="9:30" description="Meditate" isDone={false} />
-      <ScheduleItemCard from="10:00" to="11:00" description="Meeting with John Ig saasgsdg;. Meeting with John. Meeting with John. Meeting with John Meeting with John" isDone={true} />
-    </View>
+    <ScrollView>
+      <>
+        <GestureHandlerRootView style={styles.container}>
+          {scheduleItems.map((item: Object, index: number) => (
+            <ScheduleItemCardSwipeable key={index} itemIndex={index} />
+          ))}
+          <View style={styles.addScheduleItemContainer}>
+            <Pressable onPress={addScheduleItem}>
+              <FontAwesome name="plus-circle" size={wp('12%')} color='#2f95dc' />
+            </Pressable>
+          </View>
+        </GestureHandlerRootView>
+      </>
+    </ScrollView >
   );
 }
 
@@ -30,5 +43,10 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: '80%',
+  },
+  addScheduleItemContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: wp('5%'),
   },
 });
