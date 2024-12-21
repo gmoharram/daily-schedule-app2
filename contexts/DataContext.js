@@ -106,8 +106,8 @@ export const DataProvider = ({ children }) => {
         setScheduleItems(newScheduleItems);
     }
 
-    const addToRememberItem = () => {
-        setToRememberItems([...toRememberItems, { description: '', isEditing: true }]);
+    const addToRememberItem = (item = { description: '', isEditing: true }) => {
+        setToRememberItems([...toRememberItems, item]);
     }
 
     const deleteToRememberItem = (index) => {

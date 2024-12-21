@@ -50,7 +50,7 @@ export const ScheduleItemCardSwipeable = (props: ScheduleItemCardPropsSwipeable)
     }
 
     const handleSwipeRight = () => {
-        addToRememberItem({ description: scheduleItem.description });
+        addToRememberItem({ description: scheduleItem.description, isEditing: false });
         deleteScheduleItem(itemIndex);
         console.log("Swiped right");
     };
