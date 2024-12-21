@@ -1,6 +1,7 @@
 {
   "expo": {
-    "name": "daily-schedule-app",
+    "name": "Dailee",
+    "description": "A very simple daily scheduling app for lightweight time management.",
     "slug": "daily-schedule-app",
     "version": "1.0.0",
     "orientation": "portrait",
