@@ -4,8 +4,8 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { FontAwesome } from '@expo/vector-icons';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { ScheduleItemCardSwipeable } from '@/components/ScheduleItemCardSwipeable';
-import { useData } from '@/components/useData';
+import { ScheduleItemCardSwipeable } from '@/components/Cards/ScheduleItemCardSwipeable';
+import { useData } from '@/hooks/useData';
 
 export default function TabOneScreen() {
   const { scheduleItems, addScheduleItem } = useData();
@@ -17,7 +17,7 @@ export default function TabOneScreen() {
           {scheduleItems.map((item: Object, index: number) => (
             <ScheduleItemCardSwipeable key={index} itemIndex={index} />
           ))}
-          <View style={styles.addScheduleItemContainer}>
+          <View style={styles.addContainer}>
             <Pressable onPress={addScheduleItem}>
               <FontAwesome name="plus-circle" size={wp('12%')} color='#2f95dc' />
             </Pressable>
@@ -35,16 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 20,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-  addScheduleItemContainer: {
+  addContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: wp('5%'),

@@ -2,20 +2,13 @@ import { View, StyleSheet, Pressable } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 
-import { useData } from '@/components/useData';
-import { ScheduleItemCard } from '@/components/ScheduleItemCard';
-import { ScheduleItemCardEditable } from '@/components/ScheduleItemCardEditable';
+import { useData } from '@/hooks/useData';
+import { ScheduleItemCard } from '@/components/Cards/ScheduleItemCard';
+import { ScheduleItemCardEditable } from '@/components/Cards/ScheduleItemCardEditable';
 
 export type ScheduleItemCardPropsSwipeable = {
     itemIndex: number;
 };
-
-// onDone: (index: number) => void;
-// onDelete: () => void;
-// onEdit: () => void;
-// onSaved: () => void;
-// onSwipeRight: () => void;
-
 
 export const ScheduleItemCardSwipeable = (props: ScheduleItemCardPropsSwipeable) => {
     const { itemIndex } = props;

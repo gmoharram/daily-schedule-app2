@@ -3,36 +3,28 @@ import { StyleSheet, View, TextInput, Pressable } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-import { useData } from '@/components/useData';
+import { useData } from '@/hooks/useData';
 
-export type ScheduleItemCardEditableProps = {
+export type ToRememberItemCardEditableProps = {
     itemIndex: number;
 };
 
-export function ScheduleItemCardEditable(props: ScheduleItemCardEditableProps) {
+export function ToRememberItemCardEditable(props: ToRememberItemCardEditableProps) {
     const { itemIndex } = props;
-    const { scheduleItems, updateScheduleItem } = useData();
-    const scheduleItem = scheduleItems[itemIndex];
-    const [from, setFrom] = useState(scheduleItem.from);
-    const [to, setTo] = useState(scheduleItem.to);
-    const [description, setDescription] = useState(scheduleItem.description);
+    const { toRememberItems, updateToRememberItem } = useData();
+    const toRememberItem = toRememberItems[itemIndex];
+    const [description, setDescription] = useState(toRememberItem.description);
 
-    const saveNewScheduleItem = () => {
-        updateScheduleItem(itemIndex, { from, to, description, isEditing: false, isDone: false });
+    const saveNewToRememberItem = () => {
+        updateToRememberItem(itemIndex, { description, isEditing: false });
     }
 
     return (
         <View style={styles.container}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: wp('3%') }}>
-                <View style={{ flexDirection: 'row' }}>
-                    <TextInput value={from} onChangeText={setFrom} placeholder="from" style={styles.inputTime} />
-                    <TextInput value={to} onChangeText={setTo} style={styles.inputTime} />
-                </View>
-                <View>
-                    <Pressable onPress={saveNewScheduleItem}>
-                        <FontAwesome name="save" size={24} color="blue" />
-                    </Pressable>
-                </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginBottom: wp('3%') }}>
+                <Pressable onPress={saveNewToRememberItem}>
+                    <FontAwesome name="save" size={24} color="blue" />
+                </Pressable>
             </View>
             <TextInput multiline={true} value={description} onChangeText={setDescription} style={styles.inputDescription} />
         </View >

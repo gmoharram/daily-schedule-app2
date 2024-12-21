@@ -1,15 +1,31 @@
-import { StyleSheet } from 'react-native';
+import React from 'react';
+import { ScrollView, StyleSheet, View, Pressable } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { FontAwesome } from '@expo/vector-icons';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import { ToRememberItemCardSwipeable } from '@/components/Cards/ToRememberItemCardSwipeable';
+import { useData } from '@/hooks/useData';
+
 
 export default function TabTwoScreen() {
+  const { toRememberItems, addToRememberItem } = useData();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
-    </View>
+    <ScrollView>
+      <>
+        <GestureHandlerRootView style={styles.container}>
+          {toRememberItems.map((item: Object, index: number) => (
+            <ToRememberItemCardSwipeable key={index} itemIndex={index} />
+          ))}
+          <View style={styles.addContainer}>
+            <Pressable onPress={addToRememberItem}>
+              <FontAwesome name="plus-circle" size={wp('12%')} color='#2f95dc' />
+            </Pressable>
+          </View>
+        </GestureHandlerRootView>
+      </>
+    </ScrollView >
   );
 }
 
@@ -18,14 +34,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  addContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: wp('5%'),
   },
 });
