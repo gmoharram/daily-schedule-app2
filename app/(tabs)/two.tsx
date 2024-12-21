@@ -9,7 +9,7 @@ import { useData } from '@/hooks/useData';
 
 
 export default function TabTwoScreen() {
-  const { toRememberItems, addToRememberItem } = useData();
+  const { toRememberItems, addNewToRememberItem } = useData();
 
   return (
     <ScrollView>
@@ -19,7 +19,7 @@ export default function TabTwoScreen() {
             <ToRememberItemCardSwipeable key={index} itemIndex={index} />
           ))}
           <View style={styles.addContainer}>
-            <Pressable onPress={addToRememberItem}>
+            <Pressable onPress={addNewToRememberItem}>
               <FontAwesome name="plus-circle" size={wp('12%')} color='#2f95dc' />
             </Pressable>
           </View>

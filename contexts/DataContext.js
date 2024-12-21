@@ -106,8 +106,13 @@ export const DataProvider = ({ children }) => {
         setScheduleItems(newScheduleItems);
     }
 
-    const addToRememberItem = (item = { description: '', isEditing: true }) => {
-        setToRememberItems([...toRememberItems, item]);
+    const addToRememberItem = (newItem) => {
+        setToRememberItems([...toRememberItems, newItem]);
+    }
+
+    const addNewToRememberItem = () => {
+        const newItem = { description: '', isEditing: true };
+        setToRememberItems([...toRememberItems, newItem]);
     }
 
     const deleteToRememberItem = (index) => {
@@ -129,7 +134,7 @@ export const DataProvider = ({ children }) => {
         <DataContext.Provider value={{
             scheduleDate, setScheduleDate,
             scheduleItems, setScheduleItems, addScheduleItem, deleteScheduleItem, updateScheduleItem, editScheduleItem, toggleScheduleItem,
-            toRememberItems, setToRememberItems, addToRememberItem, deleteToRememberItem, updateToRememberItem, editToRememberItem,
+            toRememberItems, setToRememberItems, addToRememberItem, addNewToRememberItem, deleteToRememberItem, updateToRememberItem, editToRememberItem,
         }}>
             {children}
         </DataContext.Provider>
