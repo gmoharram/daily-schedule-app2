@@ -6,7 +6,7 @@ export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
     const [scheduleDate, setScheduleDate] = useState(new Date('2025-01-01'));
     const [scheduleItems, setScheduleItems] = useState([{ from: '9:00', to: '10:00', description: "This is my first todo of the day which I've marked as done by swiping left. I can also delete or edit it that way.", isDone: true, isEditing: false }, { from: '10:00', to: '11:00', description: 'I can move a todo to my "To Remember" list by swiping right.', isDone: false, isEditing: false }, { from: '11:00', to: '12:00', description: "I need to refresh the date above to today manually. This is in case I don't check my schedule for a while and forgot when I stopped...", isDone: false, isEditing: false }]);
-    const [toRememberItems, setToRememberItems] = useState([{ description: "Don't forget to note stuff that comes up durig the day here!", isEditing: false }, { description: 'You can always edit or delete stuff by swiping left.', isEditing: false }]);
+    const [toRememberItems, setToRememberItems] = useState([{ description: "I can note things that come up during the day here!", isEditing: false }, { description: 'I can always edit or delete stuff by swiping left.', isEditing: false }]);
 
     useEffect(() => {
         const getScheduleItems = async () => {

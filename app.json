@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Dailee",
+    "name": "Dailee Schedule",
     "description": "A very simple daily scheduling app for lightweight time management.",
     "slug": "daily-schedule-app",
     "version": "1.0.0",
@@ -36,7 +36,8 @@
       "permissions": [
         "WRITE_EXTERNAL_STORAGE",
         "READ_EXTERNAL_STORAGE"
-      ]
+      ],
+      "package": "com.clearity.dailyscheduleapp"
     },
     "web": {
       "bundler": "metro",
