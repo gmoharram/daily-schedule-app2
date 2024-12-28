@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { FontAwesome } from '@expo/vector-icons';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -11,7 +12,7 @@ export default function TabOneScreen() {
   const { scheduleItems, addScheduleItem } = useData();
 
   return (
-    <ScrollView>
+    <KeyboardAwareScrollView>
       <>
         <GestureHandlerRootView style={styles.container}>
           {scheduleItems.map((item: Object, index: number) => (
@@ -24,7 +25,7 @@ export default function TabOneScreen() {
           </View>
         </GestureHandlerRootView>
       </>
-    </ScrollView >
+    </KeyboardAwareScrollView>
   );
 }
 
