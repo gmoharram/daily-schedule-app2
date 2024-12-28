@@ -12,7 +12,7 @@ export type ScheduleItemCardPropsSwipeable = {
 
 export const ScheduleItemCardSwipeable = (props: ScheduleItemCardPropsSwipeable) => {
     const { itemIndex } = props;
-    const { scheduleItems, deleteScheduleItem, editScheduleItem, toggleScheduleItem, addToRememberItem } = useData();
+    const { scheduleItems, deleteScheduleItem, editScheduleItem, toggleScheduleItem, moveUpScheduleItem, moveDownScheduleItem, addToRememberItem } = useData();
     const scheduleItem = scheduleItems[itemIndex];
 
     const RightActions = () => {
@@ -25,7 +25,7 @@ export const ScheduleItemCardSwipeable = (props: ScheduleItemCardPropsSwipeable)
                 </View>
                 <View style={styles.icon}>
                     <Pressable onPress={() => editScheduleItem(itemIndex)}>
-                        <FontAwesome name="edit" size={28} color="blue" />
+                        <FontAwesome name="edit" size={28} color="#2f95dc" />
                     </Pressable>
                 </View>
                 <View style={styles.icon}>
@@ -67,7 +67,7 @@ export const ScheduleItemCardSwipeable = (props: ScheduleItemCardPropsSwipeable)
                 renderLeftActions={LeftActions}
                 onSwipeableWillOpen={(direction) => { if (direction === 'left') { handleSwipeRight(); } }}
             >
-                <ScheduleItemCard from={scheduleItem.from} to={scheduleItem.to} description={scheduleItem.description} isDone={scheduleItem.isDone} />
+                <ScheduleItemCard from={scheduleItem.from} to={scheduleItem.to} description={scheduleItem.description} isDone={scheduleItem.isDone} moveUp={() => moveUpScheduleItem(itemIndex)} moveDown={() => moveDownScheduleItem(itemIndex)} />
             </Swipeable>
         );
     }

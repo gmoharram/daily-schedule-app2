@@ -106,6 +106,22 @@ export const DataProvider = ({ children }) => {
         setScheduleItems(newScheduleItems);
     }
 
+    const moveUpScheduleItem = (index) => {
+        if (index > 0) {
+            const newScheduleItems = [...scheduleItems];
+            [newScheduleItems[index - 1], newScheduleItems[index]] = [newScheduleItems[index], newScheduleItems[index - 1]];
+            setScheduleItems(newScheduleItems);
+        }
+    }
+
+    const moveDownScheduleItem = (index) => {
+        if (index < scheduleItems.length - 1) {
+            const newScheduleItems = [...scheduleItems];
+            [newScheduleItems[index], newScheduleItems[index + 1]] = [newScheduleItems[index + 1], newScheduleItems[index]];
+            setScheduleItems(newScheduleItems);
+        }
+    }
+
     const addToRememberItem = (newItem) => {
         setToRememberItems([...toRememberItems, newItem]);
     }
@@ -133,7 +149,7 @@ export const DataProvider = ({ children }) => {
     return (
         <DataContext.Provider value={{
             scheduleDate, setScheduleDate,
-            scheduleItems, setScheduleItems, addScheduleItem, deleteScheduleItem, updateScheduleItem, editScheduleItem, toggleScheduleItem,
+            scheduleItems, setScheduleItems, addScheduleItem, deleteScheduleItem, updateScheduleItem, editScheduleItem, toggleScheduleItem, moveUpScheduleItem, moveDownScheduleItem,
             toRememberItems, setToRememberItems, addToRememberItem, addNewToRememberItem, deleteToRememberItem, updateToRememberItem, editToRememberItem,
         }}>
             {children}

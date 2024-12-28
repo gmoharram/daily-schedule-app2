@@ -30,7 +30,7 @@ export function ScheduleItemCardEditable(props: ScheduleItemCardEditableProps) {
                 </View>
                 <View>
                     <Pressable onPress={saveNewScheduleItem}>
-                        <FontAwesome name="save" size={24} color="blue" />
+                        <FontAwesome name="save" size={24} color="#2f95dc" />
                     </Pressable>
                 </View>
             </View>

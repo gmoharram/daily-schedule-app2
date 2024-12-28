@@ -1,4 +1,5 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import { Text } from '@/components/Themed';
@@ -8,6 +9,8 @@ export type ScheduleItemCardProps = {
     to: string;
     description: string;
     isDone: boolean;
+    moveUp: () => void;
+    moveDown: () => void;
 };
 
 export function ScheduleItemCard(props: ScheduleItemCardProps) {
@@ -17,6 +20,18 @@ export function ScheduleItemCard(props: ScheduleItemCardProps) {
                 <Text style={styles.time}>{props.from} - {props.to}</Text>
                 <Text style={styles.description}>  {props.description}</Text>
             </Text>
+            <View style={styles.actions}>
+                <View style={styles.icon}>
+                    <Pressable onPress={() => props.moveUp()}>
+                        <FontAwesome name="arrow-up" size={16} color="#2f95dc" />
+                    </Pressable>
+                </View>
+                <View style={styles.icon}>
+                    <Pressable onPress={() => props.moveDown()}>
+                        <FontAwesome name="arrow-down" size={16} color="#2f95dc" />
+                    </Pressable>
+                </View>
+            </View>
         </View>
     );
 }
@@ -48,5 +63,14 @@ const styles = StyleSheet.create({
     strikethrough: {
         textDecorationLine: 'line-through',
         color: '#aaa',
+    },
+    actions: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        paddingTop: 10,
+
+    },
+    icon: {
+        paddingLeft: 3,
     },
 });
